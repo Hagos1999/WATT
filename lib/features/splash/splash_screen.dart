@@ -104,7 +104,7 @@ class _SplashScreenState extends State<SplashScreen>
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(32),
                         child: Image.asset(
-                          'assets/images/watt_logo.png',
+                          'assets/images/watt_logo.jpg',
                           width: 240,
                           height: 240,
                           fit: BoxFit.contain,
