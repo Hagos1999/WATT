@@ -4,10 +4,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'core/config/supabase_config.dart';
+import 'core/services/notification_service.dart';
 import 'app.dart';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Load environment variables
+  await dotenv.load(fileName: ".env");
 
   // Lock to portrait mode on mobile
   await SystemChrome.setPreferredOrientations([
@@ -36,6 +42,9 @@ Future<void> main() async {
     debugPrint('[main] Firebase initialization failed: $e');
     // App can still work with Supabase as primary
   }
+
+  // Initialize local notifications
+  await NotificationService.instance.init();
 
   runApp(
     const ProviderScope(
